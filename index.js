@@ -147,7 +147,7 @@ function LogisticReg() {
   }
 
 
-  if (eventCount % 64 == 0) {
+  if (eventCount % 256 == 0) {
     
     //Console recorded acceleration and gyroscope values
     console.log(acc_x);
@@ -235,8 +235,24 @@ function LogisticReg() {
 
     console.log(max_index + 1);
 
-    //Update HTML
-    updateFieldIfNotNull("Activity", max_index + 1);
+    //Update Activity
+    
+    
+
+    switch (max_index) {
+      case 0:
+        updateFieldIfNotNull("LogisticRegression", Inactive);
+        break;
+      case 1:
+        updateFieldIfNotNull("LogisticRegression", Active);
+        break;
+      case 2:
+        updateFieldIfNotNull("LogisticRegression", Walking);
+        break;
+      case 3:
+        updateFieldIfNotNull("LogisticRegression", Driving);
+        break;
+    }
 
     //Empty acceration and gyroscope arrays
     acc_x = [];
