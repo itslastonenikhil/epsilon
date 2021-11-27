@@ -43,6 +43,14 @@ function updateFieldIfNotNull(fieldName, value, precision = 10) {
     document.getElementById(fieldName).innerHTML = value.toFixed(precision);
 }
 
+// Update HTML string =========================================================
+
+function updateString(fieldName, string) {
+  if (value != null)
+    document.getElementById(fieldName).innerHTML = string;
+}
+
+
 // Record Acceleration and Gyroscope data =======================================
 function handleMotion(event) {
   updateFieldIfNotNull("Accelerometer_i", event.interval, 2);
@@ -147,7 +155,7 @@ function LogisticReg() {
   }
 
 
-  if (eventCount % 256 == 0) {
+  if (eventCount % 128 == 0) {
     
     //Console recorded acceleration and gyroscope values
     console.log(acc_x);
@@ -241,16 +249,16 @@ function LogisticReg() {
 
     switch (max_index) {
       case 0:
-        updateFieldIfNotNull("LogisticRegression", Inactive);
+        updateString("LogisticRegression", "Inactive");
         break;
       case 1:
-        updateFieldIfNotNull("LogisticRegression", Active);
+        updateString("LogisticRegression", "Active");
         break;
       case 2:
-        updateFieldIfNotNull("LogisticRegression", Walking);
+        updateString("LogisticRegression", "Walking");
         break;
       case 3:
-        updateFieldIfNotNull("LogisticRegression", Driving);
+        updateString("LogisticRegression", "Driving");
         break;
     }
 
