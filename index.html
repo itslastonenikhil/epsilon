@@ -1,0 +1,51 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="index.css">
+
+    <title>Epsilon</title>
+</head>
+
+<body>
+    <h1>Human Activity Recognition</h1>
+
+    <div id="main">
+        <a id="start_epsilon" href="#" role="button">Start</a>
+        <p >#Datapoints: <span id="num-observed-events">0</span></p>
+
+        <h4>Accelerometer</h4>
+        <ul>
+            <li>X-axis: <span id="Accelerometer_x">0</span><span> m/s<sup>2</sup></span></li>
+            <li>Y-axis: <span id="Accelerometer_y">0</span><span> m/s<sup>2</sup></span></li>
+            <li>Z-axis: <span id="Accelerometer_z">0</span><span> m/s<sup>2</sup></span></li>
+        </ul>
+
+        <h4>Gyroscope</h4>
+        <ul>
+            <li>X-axis: <span id="Gyroscope_x">0</span><span>&deg;/s</span></li>
+            <li>Y-axis: <span id="Gyroscope_y">0</span><span>&deg;/s</span></li>
+            <li>Z-axis: <span id="Gyroscope_z">0</span><span>&deg;/s</span></li>
+        </ul>
+
+        <h4>Interval</h4>
+        <ul>
+            <li>Data Interval: <span id="Accelerometer_i">0</span><span> ms</span></li>
+        </ul>
+
+        <h4>Activity</h4>
+        <ul>
+            <li>Activity: <span id="Activity">-1</span></li>
+        </ul>
+       
+
+    </div>
+    <script defer src='https://unpkg.com/simple-statistics@7.7.0/dist/simple-statistics.min.js'></script>
+    <script defer src="index.js"></script>
+
+</body>
+
+</html>
