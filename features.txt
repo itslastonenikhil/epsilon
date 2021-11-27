@@ -1,0 +1,17 @@
+===============================================
+Feature Array
+===============================================
+
+features = 
+['acc_xs_mean', 'acc_ys_mean', 'acc_zs_mean', 
+'acc_xs_var', 'acc_ys_var', 'acc_zs_var', 
+'acc_xs_mad', 'acc_ys_mad', 'acc_zs_mad', 
+'acc_xs_max', 'acc_ys_max', 'acc_zs_max',
+'acc_xs_min', 'acc_ys_min', 'acc_zs_min', 
+'acc_xs_iqr', 'acc_ys_iqr', 'acc_zs_iqr',
+'gyro_xs_mean', 'gyro_ys_mean', 'gyro_zs_mean', 
+'gyro_xs_var', 'gyro_ys_var', 'gyro_zs_var', 
+'gyro_xs_mad', 'gyro_ys_mad', 'gyro_zs_mad', 
+'gyro_xs_max', 'gyro_ys_max', 'gyro_zs_max', 
+'gyro_xs_min', 'gyro_ys_min', 'gyro_zs_min', 
+'gyro_xs_iqr', 'gyro_ys_iqr', 'gyro_zs_iqr']
