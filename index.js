@@ -46,7 +46,7 @@ function updateFieldIfNotNull(fieldName, value, precision = 10) {
 // Update HTML string =========================================================
 
 function updateString(fieldName, string) {
-  if (value != null)
+  if (string != null)
     document.getElementById(fieldName).innerHTML = string;
 }
 
