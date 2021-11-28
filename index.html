@@ -17,6 +17,38 @@
         <a id="start_epsilon" href="#" role="button">Start</a>
         <p >#Datapoints: <span id="num-observed-events">0</span></p>
 
+
+        <h4>Congfiguration</h4>
+       
+
+        <form action="index.html" id="config">
+            <ul>
+                <li>Record Freq.: <input type="number" id="Record_freq_input" placeholder="2" value="2"><span>ms</span></li>
+                <li>Predict Freq.: <input type="number" id="Predict_freq_input" placeholder="64" value="64"><span>ms</span></li>
+                <li>High-Pass Smoothing: <input type="number" id="HPF_smoothing_input" placeholder="2" value="2"></li>
+                <li>Low-Pass Smoothing: <input type="number" id="LPF_smoothing_input" placeholder="8" value="8"></li>
+            </ul>
+            <input type="button" onclick="setConfigValues()" value="Submit">
+        </form>
+
+        <table style="width: 1%;" border="1" cellpadding="2">
+            <tbody>
+            <tr>
+            <td>Record</td>
+            <td>Predict </td>
+            <td>HPF</td>
+            <td>LPF</td>
+            </tr>
+            <tr>
+            <td><span id="Record_freq">0</span></td>
+            <td><span id="Predict_freq">0</span></td>
+            <td><span id="HPF_smoothing">0</span></td>
+            <td><span id="LPF_smoothing">0</span></td>
+            </tr>
+            </tbody>
+            </table>
+
+        
         <h4>Accelerometer</h4>
         <ul>
             <li>X-axis: <span id="Accelerometer_x">0</span><span> m/s<sup>2</sup></span></li>
