@@ -50,6 +50,13 @@ function updateString(fieldName, string) {
     document.getElementById(fieldName).innerHTML = string;
 }
 
+// Convert degree to radians ===================================================
+function degreesToRadians(degrees)
+{
+  var pi = Math.PI;
+  return degrees * (pi/180);
+}
+
 
 // Record Acceleration and Gyroscope data =======================================
 function handleMotion(event) {
@@ -149,9 +156,9 @@ function LogisticReg() {
     acc_y.push(getValue("Accelerometer_y"));
     acc_z.push(getValue("Accelerometer_z"));
 
-    gyr_x.push(getValue("Gyroscope_x"));
-    gyr_y.push(getValue("Gyroscope_y"));
-    gyr_z.push(getValue("Gyroscope_z"));
+    gyr_x.push(degreesToRadians(getValue("Gyroscope_x")));
+    gyr_y.push(degreesToRadians(getValue("Gyroscope_y")));
+    gyr_z.push(degreesToRadians(getValue("Gyroscope_z")));
   }
 
 
@@ -161,9 +168,9 @@ function LogisticReg() {
     // console.log(acc_x);
     // console.log(acc_y);
     // console.log(acc_x);
-    // console.log(gyr_x);
-    // console.log(gyr_y);
-    // console.log(gyr_x);
+    console.log(gyr_x);
+    console.log(gyr_y);
+    console.log(gyr_x);
     
 
     //Get features from acceration and gyroscope values
