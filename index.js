@@ -170,10 +170,10 @@ function LogisticReg() {
     //Console recorded acceleration and gyroscope values
     console.log(acc_x);
     console.log(acc_y);
-    console.log(acc_x);
+    console.log(acc_z);
     console.log(gyr_x);
     console.log(gyr_y);
-    console.log(gyr_x);
+    console.log(gyr_z);
     
 
     //Get features from acceration and gyroscope values
