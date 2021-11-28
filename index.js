@@ -27,6 +27,7 @@ start_button.onclick = function (e) {
 };
 
 
+
 // Event Counter =============================================================
 
 function incrementEventCount() {
@@ -55,6 +56,51 @@ function degreesToRadians(degrees)
 {
   var pi = Math.PI;
   return degrees * (pi/180);
+}
+
+// Low Pass Filter =============================================================
+function lowPassFilter(real_signal, smoothing){
+  let new_signal = real_signal.slice();
+  let alpha = 1/smoothing;
+
+  new_signal[0] = alpha*real_signal[0]
+  for(let i = 1; i < real_signal.length; i++){
+    new_signal[i] = alpha*real_signal[i] + (1-alpha)*new_signal[i-1]
+  }
+
+  new_signal[0] = new_signal[1]
+
+  return new_signal;
+}
+
+// High Pass Filter =============================================================
+function highPassFilter(real_signal, smoothing){
+  let new_signal = real_signal.slice();
+  let alpha = 1/smoothing;
+
+  new_signal[0] = real_signal[0]
+  for(let i = 1; i < real_signal.length; i++){
+    new_signal[i] = alpha*new_signal[i-1] + alpha*(real_signal[i] - real_signal[i-1]);
+  }
+
+  new_signal[0] = new_signal[1]
+
+  return new_signal;
+}
+
+// Set Configuration Values =================================================
+
+function setConfigValues(){
+  let recordFreq = parseFloat(document.getElementById("Record_freq_input").value);
+  let predictFreq = parseFloat(document.getElementById("Predict_freq_input").value);
+  let hpfSmoothing = parseFloat(document.getElementById("HPF_smoothing_input").value);
+  let lpfSmoothing = parseFloat(document.getElementById("LPF_smoothing_input").value);
+  
+
+  updateFieldIfNotNull("Record_freq", recordFreq);
+  updateFieldIfNotNull("Predict_freq", predictFreq);
+  updateFieldIfNotNull("HPF_smoothing", hpfSmoothing)
+  updateFieldIfNotNull("LPF_smoothing", lpfSmoothing);
 }
 
 
@@ -151,8 +197,10 @@ function LogisticReg() {
   // event interval = 16ms
   // 16ms * 32(eventCount) = 512ms ~ Half Seconds
 
-  let recordFreq = 2;
-  let predictFreq = 64;
+  let recordFreq = getValue("Record_freq");
+  let predictFreq = getValue("Predict_freq");
+  let hpfSmooth = getValue("HPF_smoothing");
+  let lpfSmooth = getValue("LPF_smoothing");
 
   if (eventCount % recordFreq == 0) {
     acc_x.push(getValue("Accelerometer_x"));
@@ -174,7 +222,14 @@ function LogisticReg() {
     console.log(gyr_x);
     console.log(gyr_y);
     console.log(gyr_z);
-    
+
+    acc_x = lowPassFilter(acc_x, lpfSmooth);
+    acc_y = lowPassFilter(acc_y, lpfSmooth);
+    acc_z = lowPassFilter(acc_z, lpfSmooth);
+
+    gyr_x = highPassFilter(gyr_x, hpfSmooth);
+    gyr_y = highPassFilter(gyr_y, hpfSmooth);
+    gyr_z = highPassFilter(gyr_z, hpfSmooth);
 
     //Get features from acceration and gyroscope values
     let feature_value = [];
