@@ -162,7 +162,7 @@ function LogisticReg() {
   }
 
 
-  if (eventCount % 128 == 0) {
+  if (eventCount % 64 == 0) {
     
     //Console recorded acceleration and gyroscope values
     // console.log(acc_x);
@@ -270,12 +270,28 @@ function LogisticReg() {
     }
 
     //Empty acceration and gyroscope arrays
-    acc_x = [];
-    acc_y = [];
-    acc_z = [];
 
-    gyr_x = [];
-    gyr_y = [];
-    gyr_z = [];
+    // acc_x = [];
+    // acc_y = [];
+    // acc_z = [];
+
+    // gyr_x = [];
+    // gyr_y = [];
+    // gyr_z = [];
+
+
+    // Overlapping
+    
+    //Remove first 32 elements of 64
+    let start_index = 0;
+    var delete_elements = 32;
+
+    acc_x.splice(start_index, delete_elements);
+    acc_y.splice(start_index, delete_elements);
+    acc_z.splice(start_index, delete_elements);
+
+    gyr_x.splice(start_index, delete_elements);
+    gyr_y.splice(start_index, delete_elements);
+    gyr_z.splice(start_index, delete_elements);
   }
 }
