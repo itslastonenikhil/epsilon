@@ -151,7 +151,7 @@ function LogisticReg() {
   // event interval = 16ms
   // 16ms * 32(eventCount) = 512ms ~ Half Seconds
 
-  if (eventCount % 1 == 0) {
+  if (eventCount % 2 == 0) {
     acc_x.push(getValue("Accelerometer_x"));
     acc_y.push(getValue("Accelerometer_y"));
     acc_z.push(getValue("Accelerometer_z"));
@@ -162,7 +162,7 @@ function LogisticReg() {
   }
 
 
-  if (eventCount % 64 == 0) {
+  if (eventCount % 128 == 0) {
     
     //Console recorded acceleration and gyroscope values
     // console.log(acc_x);
