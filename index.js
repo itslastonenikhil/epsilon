@@ -151,8 +151,8 @@ function LogisticReg() {
   // event interval = 16ms
   // 16ms * 32(eventCount) = 512ms ~ Half Seconds
 
-  let recordFreq = 1;
-  let predictFreq = 32;
+  let recordFreq = 2;
+  let predictFreq = 64;
 
   if (eventCount % recordFreq == 0) {
     acc_x.push(getValue("Accelerometer_x"));
