@@ -151,7 +151,10 @@ function LogisticReg() {
   // event interval = 16ms
   // 16ms * 32(eventCount) = 512ms ~ Half Seconds
 
-  if (eventCount % 2 == 0) {
+  let recordFreq = 2;
+  let predictFreq = 128;
+
+  if (eventCount % recordFreq == 0) {
     acc_x.push(getValue("Accelerometer_x"));
     acc_y.push(getValue("Accelerometer_y"));
     acc_z.push(getValue("Accelerometer_z"));
@@ -162,7 +165,7 @@ function LogisticReg() {
   }
 
 
-  if (eventCount % 128 == 0) {
+  if (eventCount % predictFreq == 0) {
     
     //Console recorded acceleration and gyroscope values
     // console.log(acc_x);
@@ -283,15 +286,34 @@ function LogisticReg() {
     // Overlapping
     
     //Remove first 32 elements of 64
+
     let start_index = 0;
-    var delete_elements = 32;
+    let delete_elements = 32;
 
-    acc_x.splice(start_index, delete_elements);
-    acc_y.splice(start_index, delete_elements);
-    acc_z.splice(start_index, delete_elements);
+    if(eventCount == 128){
+      
+      acc_x.splice(start_index, delete_elements);
+      acc_y.splice(start_index, delete_elements);
+      acc_z.splice(start_index, delete_elements);
 
-    gyr_x.splice(start_index, delete_elements);
-    gyr_y.splice(start_index, delete_elements);
-    gyr_z.splice(start_index, delete_elements);
+      gyr_x.splice(start_index, delete_elements);
+      gyr_y.splice(start_index, delete_elements);
+      gyr_z.splice(start_index, delete_elements);
+
+    }
+    else{
+      start_index = 0;
+      delete_elements = 64;
+
+      acc_x.splice(start_index, delete_elements);
+      acc_y.splice(start_index, delete_elements);
+      acc_z.splice(start_index, delete_elements);
+
+      gyr_x.splice(start_index, delete_elements);
+      gyr_y.splice(start_index, delete_elements);
+      gyr_z.splice(start_index, delete_elements);
+
+    }
+    
   }
 }
