@@ -151,7 +151,7 @@ function LogisticReg() {
   // event interval = 16ms
   // 16ms * 32(eventCount) = 512ms ~ Half Seconds
 
-  let recordFreq = 2;
+  let recordFreq = 1;
   let predictFreq = 128;
 
   if (eventCount % recordFreq == 0) {
@@ -272,48 +272,48 @@ function LogisticReg() {
         break;
     }
 
-    //Empty acceration and gyroscope arrays
+    // Empty acceration and gyroscope arrays
 
-    // acc_x = [];
-    // acc_y = [];
-    // acc_z = [];
+    acc_x = [];
+    acc_y = [];
+    acc_z = [];
 
-    // gyr_x = [];
-    // gyr_y = [];
-    // gyr_z = [];
+    gyr_x = [];
+    gyr_y = [];
+    gyr_z = [];
 
 
     // Overlapping
     
     //Remove first 32 elements of 64
 
-    let start_index = 0;
-    let delete_elements = 32;
+    // let start_index = 0;
+    // let delete_elements = 32;
 
-    if(eventCount == 128){
+    // if(eventCount == 128){
       
-      acc_x.splice(start_index, delete_elements);
-      acc_y.splice(start_index, delete_elements);
-      acc_z.splice(start_index, delete_elements);
+    //   acc_x.splice(start_index, delete_elements);
+    //   acc_y.splice(start_index, delete_elements);
+    //   acc_z.splice(start_index, delete_elements);
 
-      gyr_x.splice(start_index, delete_elements);
-      gyr_y.splice(start_index, delete_elements);
-      gyr_z.splice(start_index, delete_elements);
+    //   gyr_x.splice(start_index, delete_elements);
+    //   gyr_y.splice(start_index, delete_elements);
+    //   gyr_z.splice(start_index, delete_elements);
 
-    }
-    else{
-      start_index = 0;
-      delete_elements = 64;
+    // }
+    // else{
+    //   start_index = 0;
+    //   delete_elements = 64;
 
-      acc_x.splice(start_index, delete_elements);
-      acc_y.splice(start_index, delete_elements);
-      acc_z.splice(start_index, delete_elements);
+    //   acc_x.splice(start_index, delete_elements);
+    //   acc_y.splice(start_index, delete_elements);
+    //   acc_z.splice(start_index, delete_elements);
 
-      gyr_x.splice(start_index, delete_elements);
-      gyr_y.splice(start_index, delete_elements);
-      gyr_z.splice(start_index, delete_elements);
+    //   gyr_x.splice(start_index, delete_elements);
+    //   gyr_y.splice(start_index, delete_elements);
+    //   gyr_z.splice(start_index, delete_elements);
 
-    }
+    // }
     
   }
 }
