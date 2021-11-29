@@ -192,6 +192,11 @@ function setConfigValues(){
 
 }
 
+  let recordFreq = getValue("Record_freq");
+  let predictFreq = getValue("Predict_freq");
+  let hpfSmooth = getValue("HPF_smoothing");
+  let lpfSmooth = getValue("LPF_smoothing");
+
 
 // Record Acceleration and Gyroscope data =======================================
 function handleMotion(event) {
@@ -434,10 +439,7 @@ function LogisticReg() {
   // event interval = 16ms
   // 16ms * 32(eventCount) = 512ms ~ Half Seconds
 
-  let recordFreq = getValue("Record_freq");
-  let predictFreq = getValue("Predict_freq");
-  let hpfSmooth = getValue("HPF_smoothing");
-  let lpfSmooth = getValue("LPF_smoothing");
+  
 
   let prev_lat = getValue("Latitude");
   let prev_long = getValue("Longitude");
