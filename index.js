@@ -417,7 +417,7 @@ function getStatsGPS(feature_value, lat, long, alt, sp, bear, ac){
   
 }
 
-function overlapSlidingWindow(arr, fraction){
+function overlapSlidingWindow(arr, fraction, eventCount){
     let start_index = 0; 
     let end_index = predictFreq/recordFreq; //number of elements
     let end_index_new = end_index;
@@ -574,20 +574,20 @@ function LogisticReg() {
     // ac = [];(
 
     let overlapping_fraction = 0.5;
-    overlapSlidingWindow(acc_x, overlapping_fraction);
-    overlapSlidingWindow(acc_y, overlapping_fraction);
-    overlapSlidingWindow(acc_z, overlapping_fraction);
+    overlapSlidingWindow(acc_x, overlapping_fraction,eventCount);
+    overlapSlidingWindow(acc_y, overlapping_fraction,eventCount);
+    overlapSlidingWindow(acc_z, overlapping_fraction,eventCount);
 
-    overlapSlidingWindow(gyr_x, overlapping_fraction);
-    overlapSlidingWindow(gyr_y, overlapping_fraction);
-    overlapSlidingWindow(gyr_z, overlapping_fraction);
+    overlapSlidingWindow(gyr_x, overlapping_fraction,eventCount);
+    overlapSlidingWindow(gyr_y, overlapping_fraction,eventCount);
+    overlapSlidingWindow(gyr_z, overlapping_fraction,eventCount);
 
-    overlapSlidingWindow(lat_inc, overlapping_fraction);
-    overlapSlidingWindow(long_inc, overlapping_fraction);
-    overlapSlidingWindow(alt_inc, overlapping_fraction);
-    overlapSlidingWindow(sp, overlapping_fraction);
-    overlapSlidingWindow(bear, overlapping_fraction);
-    overlapSlidingWindow(ac, overlapping_fraction);
+    overlapSlidingWindow(lat_inc, overlapping_fraction,eventCount);
+    overlapSlidingWindow(long_inc, overlapping_fraction,eventCount);
+    overlapSlidingWindow(alt_inc, overlapping_fraction,eventCount);
+    overlapSlidingWindow(sp, overlapping_fraction,eventCount);
+    overlapSlidingWindow(bear, overlapping_fraction,eventCount);
+    overlapSlidingWindow(ac, overlapping_fraction,eventCount);
 
   }
 }
