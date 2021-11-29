@@ -11,7 +11,8 @@
 </head>
 
 <body>
-    <h1>Human Activity Recognition</h1>
+    <h2>Human Activity Recognition</h2>
+    
 
     <div id="main">
         <a id="start_epsilon" href="#" role="button">Start</a>
@@ -24,30 +25,58 @@
 
         <form action="index.html" id="config">
             <ul>
-                <li>Record Freq.: <input type="number" id="Record_freq_input" placeholder="2" value="2"><span>events</span></li>
-                <li>Predict Freq.: <input type="number" id="Predict_freq_input" placeholder="64" value="64"><span>events</span></li>
-                <li>High-Pass(&alpha;): <input type="number" id="HPF_smoothing_input" placeholder="2" value="2"></li>
-                <li>Low-Pass(&alpha;): <input type="number" id="LPF_smoothing_input" placeholder="8" value="8"></li>
+                <li>Record after: <input type="number" id="Record_freq_input" value="2"><span>events</span></li>
+                <li>Predict after: <input type="number" id="Predict_freq_input" value="64"><span>events</span></li>
+                <li>High-Pass(&alpha;): <input type="number" id="HPF_smoothing_input"  value="2"></li>
+                <li>Low-Pass(&alpha;): <input type="number" id="LPF_smoothing_input" value="8"></li>
+                <li>Max-Age(GPS): <input type="number" id="Max_age_gps_input" value="0"></li>
+                <li>Timeout(GPS): <input type="number" id="Timeout_gps_input" value="3000"></li>
+
+                <label for="High_accuracy_gps_input">High Accuracy(GPS):</label>
+                <select id="High_accuracy_gps_input">
+                    <option value="1">True</option>
+                    <option value="0" selected>False</option>
+                </select>
             </ul>
             <input type="button" onclick="setConfigValues()" value="Submit">
         </form>
 
         <table style="width: 1%;" border="1" cellpadding="2">
             <tbody>
-            <tr>
-            <td>Record</td>
-            <td>Predict </td>
-            <td>HPF</td>
-            <td>LPF</td>
-            </tr>
-            <tr>
-            <td><span id="Record_freq">2</span></td>
-            <td><span id="Predict_freq">64</span></td>
-            <td><span id="HPF_smoothing">2</span></td>
-            <td><span id="LPF_smoothing">8</span></td>
-            </tr>
+                <tr>
+                    <td>Max-Age </td>
+                    <td>Timeout</td>
+                    <td>High Acc.</td>
+                    
+                </tr>
+                <tr>
+                    <td><span id="Max_age_gps">0</span></td>
+                    <td><span id="Timeout_gps">3000</span></td>
+                    <td><span id="High_accuracy_gps">0</span></td>
+                    
+                </tr>
             </tbody>
-            </table>
+            
+        </table>
+
+        <table style="width: 1%;" border="1" cellpadding="2">
+            <tbody>
+                <tr>
+                    <td>Record</td>
+                    <td>Predict </td>
+                    <td>HPF</td>
+                    <td>LPF</td>
+                    
+                </tr>
+                <tr>
+                    <td><span id="Record_freq">2</span></td>
+                    <td><span id="Predict_freq">64</span></td>
+                    <td><span id="HPF_smoothing">2</span></td>
+                    <td><span id="LPF_smoothing">8</span></td>
+                </tr>
+            </tbody>
+            
+        </table>
 
         
         <h4>Accelerometer</h4>

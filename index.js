@@ -29,9 +29,9 @@ start_button.onclick = function (e) {
 // Geolocation ==============================================================
 
 let options = {
-  enableHighAccuracy: false
-  // maximumAge: 30000,
-  // timeout: 27000
+  enableHighAccuracy: Boolean(getValue("High_accuracy_gps")),
+  maximumAge: getValue("Max_age_gps"),
+  timeout: getValue("Timeout_gps")
 };
 
 
@@ -63,7 +63,7 @@ function geoFindMe() {
     status.textContent = 'Geolocation is not supported by your browser';
   } else {
     status.textContent = 'Locating…';
-    navigator.geolocation.watchPosition(success, error, options);
+    navigator.geolocation.getCurrentPosition(success, error, options);
   }
 
 }
@@ -139,12 +139,19 @@ function setConfigValues(){
   let predictFreq = parseFloat(document.getElementById("Predict_freq_input").value);
   let hpfSmoothing = parseFloat(document.getElementById("HPF_smoothing_input").value);
   let lpfSmoothing = parseFloat(document.getElementById("LPF_smoothing_input").value);
+  let maxAgeGPS = parseFloat(document.getElementById("Max_age_gps_input").value);
+  let timeoutGPS = parseFloat(document.getElementById("Timeout_gps_input").value);
+  let highAccGPS = parseFloat(document.getElementById("High_accuracy_gps_input").value);
   
 
   updateFieldIfNotNull("Record_freq", recordFreq);
   updateFieldIfNotNull("Predict_freq", predictFreq);
   updateFieldIfNotNull("HPF_smoothing", hpfSmoothing)
   updateFieldIfNotNull("LPF_smoothing", lpfSmoothing);
+  updateFieldIfNotNull("Max_age_gps", maxAgeGPS);
+  updateFieldIfNotNull("Timeout_gps", timeoutGPS);
+  updateFieldIfNotNull("High_accuracy_gps", highAccGPS);
+
 }
 
 
