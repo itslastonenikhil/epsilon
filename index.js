@@ -4,6 +4,7 @@
 
 let is_running = false;
 let start_button = document.getElementById("start_epsilon");
+let id;
 start_button.onclick = function (e) {
   e.preventDefault();
 
@@ -17,12 +18,17 @@ start_button.onclick = function (e) {
 
   if (is_running) {
     window.removeEventListener("devicemotion", handleMotion);
+    stopGeolocation(id);
     document.getElementById("start_epsilon").innerHTML = "Start";
+    
+
     is_running = false;
   } else {
     window.addEventListener("devicemotion", handleMotion);
+    id = startGeolocation();
     document.getElementById("start_epsilon").innerHTML = "Stop";
     is_running = true;
+    ;
   }
 };
 
@@ -35,8 +41,11 @@ let options = {
   enableHighAccuracy: Boolean(getValue("High_accuracy_gps"))
 };
 
+function stopGeolocation(id) {
+  navigator.geolocation.clearWatch(id);
+}
 
-function geoFindMe() {
+function startGeolocation() {
 
   let status = document.querySelector('#status');
   let mapLink = document.querySelector('#map-link');
@@ -48,11 +57,21 @@ function geoFindMe() {
     let latitude  = position.coords.latitude;
     let longitude = position.coords.longitude;
     let accuracy = position.coords.accuracy;
+    let altitude = position.coords.altitude;
+    let bearing = position.coords.bearing;
+    let speed = position.coords.speed;
+
 
     status.textContent = '';
     // mapLink.href = `https://www.openstreetmap.org/#map=18/${latitude}/${longitude}`;
     mapLink.href = `https://www.google.com/maps/@${latitude},${longitude},16z`
-    mapLink.textContent = `Latitude: ${latitude} °, Longitude: ${longitude} °, Accuracy: ${accuracy}`;
+    mapLink.textContent = `Latitude: ${latitude} °, Longitude: ${longitude} °`;
+    updateFieldIfNotNull("Latitude", latitude);
+    updateFieldIfNotNull("Longitude", longitude);
+    updateFieldIfNotNull("Altitde", altitude);
+    updateFieldIfNotNull("Speed", speed);
+    updateFieldIfNotNull("Bearing", bearing);
+    updateFieldIfNotNull("Accuracy", accuracy);
     incrementEventCountGPS();
   }
 
@@ -65,12 +84,14 @@ function geoFindMe() {
     status.textContent = 'Geolocation is not supported by your browser';
   } else {
     status.textContent = 'Locating…';
-    navigator.geolocation.watchPosition(success, error, options);
+    id = navigator.geolocation.watchPosition(success, error, options);
   }
+
+  return id;
 
 }
 
-document.querySelector('#find-me').addEventListener('click', geoFindMe);
+// document.querySelector('#find-me').addEventListener('click', geoFindMe);
 
 
 
