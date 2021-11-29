@@ -16,8 +16,10 @@
 
     <div id="main">
         <a id="start_epsilon" href="#" role="button">Start</a>
-        <p >#Datapoints: <span id="num-observed-events">0</span></p>
+        <p >#Datapoints(Acc & Gyro): <span id="num-observed-events">0</span></p>
+        <p >#Datapoints(GPS): <span id="num-observed-events-gps">0</span></p>
         <p>Data Interval: <span id="Accelerometer_i">0</span><span> ms</span></p>
+        
 
 
         <h4>Congfiguration</h4>
@@ -29,8 +31,8 @@
                 <li>Predict after: <input type="number" id="Predict_freq_input" value="64"><span>events</span></li>
                 <li>High-Pass(&alpha;): <input type="number" id="HPF_smoothing_input"  value="2"></li>
                 <li>Low-Pass(&alpha;): <input type="number" id="LPF_smoothing_input" value="8"></li>
-                <li>Max-Age(GPS): <input type="number" id="Max_age_gps_input" value="0"></li>
-                <li>Timeout(GPS): <input type="number" id="Timeout_gps_input" value="3000"></li>
+                <!-- <li>Max-Age(GPS): <input type="number" id="Max_age_gps_input" value="0"></li>
+                <li>Timeout(GPS): <input type="number" id="Timeout_gps_input" value="3000"></li> -->
 
                 <label for="High_accuracy_gps_input">High Accuracy(GPS):</label>
                 <select id="High_accuracy_gps_input">
@@ -44,14 +46,14 @@
         <table style="width: 1%;" border="1" cellpadding="2">
             <tbody>
                 <tr>
-                    <td>Max-Age </td>
-                    <td>Timeout</td>
+                    <!-- <td>Max-Age </td>
+                    <td>Timeout</td> -->
                     <td>High Acc.</td>
                     
                 </tr>
                 <tr>
-                    <td><span id="Max_age_gps">0</span></td>
-                    <td><span id="Timeout_gps">3000</span></td>
+                    <!-- <td><span id="Max_age_gps">0</span></td>
+                    <td><span id="Timeout_gps">3000</span></td> -->
                     <td><span id="High_accuracy_gps">0</span></td>
                     
                 </tr>

@@ -29,9 +29,10 @@ start_button.onclick = function (e) {
 // Geolocation ==============================================================
 
 let options = {
-  enableHighAccuracy: Boolean(getValue("High_accuracy_gps")),
-  maximumAge: getValue("Max_age_gps"),
-  timeout: getValue("Timeout_gps")
+  
+  // maximumAge: getValue("Max_age_gps"),
+  // timeout: getValue("Timeout_gps"),
+  enableHighAccuracy: Boolean(getValue("High_accuracy_gps"))
 };
 
 
@@ -52,6 +53,7 @@ function geoFindMe() {
     // mapLink.href = `https://www.openstreetmap.org/#map=18/${latitude}/${longitude}`;
     mapLink.href = `https://www.google.com/maps/@${latitude},${longitude},16z`
     mapLink.textContent = `Latitude: ${latitude} °, Longitude: ${longitude} °, Accuracy: ${accuracy}`;
+    incrementEventCountGPS();
   }
 
   function error() {
@@ -79,6 +81,12 @@ function incrementEventCount() {
   let eventCount = parseInt(counterElement.innerHTML);
   counterElement.innerHTML = eventCount + 1;
   LogisticReg();
+}
+
+function incrementEventCountGPS() {
+  let counterElement = document.getElementById("num-observed-events-gps");
+  let eventCount = parseInt(counterElement.innerHTML);
+  counterElement.innerHTML = eventCount + 1;
 }
 
 // Update HTML values =========================================================
@@ -139,8 +147,8 @@ function setConfigValues(){
   let predictFreq = parseFloat(document.getElementById("Predict_freq_input").value);
   let hpfSmoothing = parseFloat(document.getElementById("HPF_smoothing_input").value);
   let lpfSmoothing = parseFloat(document.getElementById("LPF_smoothing_input").value);
-  let maxAgeGPS = parseFloat(document.getElementById("Max_age_gps_input").value);
-  let timeoutGPS = parseFloat(document.getElementById("Timeout_gps_input").value);
+  // let maxAgeGPS = parseFloat(document.getElementById("Max_age_gps_input").value);
+  // let timeoutGPS = parseFloat(document.getElementById("Timeout_gps_input").value);
   let highAccGPS = parseFloat(document.getElementById("High_accuracy_gps_input").value);
   
 
@@ -148,8 +156,8 @@ function setConfigValues(){
   updateFieldIfNotNull("Predict_freq", predictFreq);
   updateFieldIfNotNull("HPF_smoothing", hpfSmoothing)
   updateFieldIfNotNull("LPF_smoothing", lpfSmoothing);
-  updateFieldIfNotNull("Max_age_gps", maxAgeGPS);
-  updateFieldIfNotNull("Timeout_gps", timeoutGPS);
+  // updateFieldIfNotNull("Max_age_gps", maxAgeGPS);
+  // updateFieldIfNotNull("Timeout_gps", timeoutGPS);
   updateFieldIfNotNull("High_accuracy_gps", highAccGPS);
 
 }
