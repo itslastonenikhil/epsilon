@@ -68,7 +68,7 @@ function startGeolocation() {
     mapLink.textContent = `Latitude: ${latitude} °, Longitude: ${longitude} °`;
     updateFieldIfNotNull("Latitude", latitude);
     updateFieldIfNotNull("Longitude", longitude);
-    updateFieldIfNotNull("Altitde", altitude);
+    updateFieldIfNotNull("Altitude", altitude);
     updateFieldIfNotNull("Speed", speed);
     updateFieldIfNotNull("Bearing", bearing);
     updateFieldIfNotNull("Accuracy", accuracy);
