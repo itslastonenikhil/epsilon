@@ -427,7 +427,7 @@ function overlapSlidingWindow(arr, fraction, eventCount){
       end_index_new = Math.floor((1-overlap)*end_index);
     }
 
-    arr.splice(start_index, new_end_index);
+    arr.splice(start_index, end_index_new);
 }
 
 function LogisticReg() {
