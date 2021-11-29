@@ -25,7 +25,7 @@ start_button.onclick = function (e) {
     is_running = false;
   } else {
     window.addEventListener("devicemotion", handleMotion);
-    id = startGeolocation();
+    startGeolocation();
     document.getElementById("start_epsilon").innerHTML = "Stop";
     is_running = true;
     ;
@@ -86,8 +86,6 @@ function startGeolocation() {
     status.textContent = 'Locating…';
     id = navigator.geolocation.watchPosition(success, error, options);
   }
-
-  return id;
 
 }
 
