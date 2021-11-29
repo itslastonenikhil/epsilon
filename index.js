@@ -26,6 +26,50 @@ start_button.onclick = function (e) {
   }
 };
 
+// Geolocation ==============================================================
+
+let options = {
+  enableHighAccuracy: true
+  // maximumAge: 30000,
+  // timeout: 27000
+};
+
+
+function geoFindMe() {
+
+  let status = document.querySelector('#status');
+  let mapLink = document.querySelector('#map-link');
+
+  mapLink.href = '';
+  mapLink.textContent = '';
+
+  function success(position) {
+    let latitude  = position.coords.latitude;
+    let longitude = position.coords.longitude;
+    let accuracy = position.coords.accuracy;
+
+    status.textContent = '';
+    // mapLink.href = `https://www.openstreetmap.org/#map=18/${latitude}/${longitude}`;
+    mapLink.href = `https://www.google.com/maps/@${latitude},${longitude},16z`
+    mapLink.textContent = `Latitude: ${latitude} °, Longitude: ${longitude} °, Accuracy: ${accuracy}`;
+  }
+
+  function error() {
+    status.textContent = 'Unable to retrieve your location';
+  }
+
+
+  if(!navigator.geolocation) {
+    status.textContent = 'Geolocation is not supported by your browser';
+  } else {
+    status.textContent = 'Locating…';
+    navigator.geolocation.watchPosition(success, error, options);
+  }
+
+}
+
+document.querySelector('#find-me').addEventListener('click', geoFindMe);
+
 
 
 // Event Counter =============================================================

@@ -16,6 +16,7 @@
     <div id="main">
         <a id="start_epsilon" href="#" role="button">Start</a>
         <p >#Datapoints: <span id="num-observed-events">0</span></p>
+        <p>Data Interval: <span id="Accelerometer_i">0</span><span> ms</span></p>
 
 
         <h4>Congfiguration</h4>
@@ -23,8 +24,8 @@
 
         <form action="index.html" id="config">
             <ul>
-                <li>Record Freq.: <input type="number" id="Record_freq_input" placeholder="2" value="2"><span>ms</span></li>
-                <li>Predict Freq.: <input type="number" id="Predict_freq_input" placeholder="64" value="64"><span>ms</span></li>
+                <li>Record Freq.: <input type="number" id="Record_freq_input" placeholder="2" value="2"><span>events</span></li>
+                <li>Predict Freq.: <input type="number" id="Predict_freq_input" placeholder="64" value="64"><span>events</span></li>
                 <li>High-Pass(&alpha;): <input type="number" id="HPF_smoothing_input" placeholder="2" value="2"></li>
                 <li>Low-Pass(&alpha;): <input type="number" id="LPF_smoothing_input" placeholder="8" value="8"></li>
             </ul>
@@ -63,10 +64,9 @@
             <li>Z-axis: <span id="Gyroscope_z">0</span><span>&deg;/s</span></li>
         </ul>
 
-        <h4>Interval</h4>
-        <ul>
-            <li>Data Interval: <span id="Accelerometer_i">0</span><span> ms</span></li>
-        </ul>
+        <button id = "find-me">Show my location</button><br/>
+        <p id = "status"></p>
+        <a id = "map-link" target="_blank"></a>
 
         <h4>Activity</h4>
         <ul>
