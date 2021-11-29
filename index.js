@@ -412,6 +412,19 @@ function getStatsGPS(feature_value, lat, long, alt, sp, bear, ac){
   
 }
 
+function overlapSlidingWindow(arr, fraction){
+    let start_index = 0; 
+    let end_index = predictFreq/recordFreq; //number of elements
+    let end_index_new = end_index;
+    let overlap = fraction;//percentage/fraction of overlapping
+
+    if(eventCount == predictFreq){
+      end_index_new = Math.floor((1-overlap)*end_index);
+    }
+
+    arr.splice(start_index, new_end_index);
+}
+
 function LogisticReg() {
 
 
@@ -543,53 +556,36 @@ function LogisticReg() {
 
     // Empty acceration and gyroscope arrays
 
-    acc_x = [];
-    acc_y = [];
-    acc_z = [];
+    // acc_x = [];
+    // acc_y = [];
+    // acc_z = [];
 
-    gyr_x = [];
-    gyr_y = [];
-    gyr_z = [];
+    // gyr_x = [];
+    // gyr_y = [];
+    // gyr_z = [];
 
-    lat_inc = [];
-    long_inc = [];
-    alt_inc = [];
-    sp = [];
-    bear = [];
-    ac = [];
+    // lat_inc = [];
+    // long_inc = [];
+    // alt_inc = [];
+    // sp = [];
+    // bear = [];
+    // ac = [];(
 
+    let overlapping_fraction = 0.5;
+    overlapSlidingWindow(acc_x, overlapping_fraction);
+    overlapSlidingWindow(acc_y, overlapping_fraction);
+    overlapSlidingWindow(acc_z, overlapping_fraction);
 
-    // Overlapping
-    
-    //Remove first 32 elements of 64
+    overlapSlidingWindow(gyr_x, overlapping_fraction);
+    overlapSlidingWindow(gyr_y, overlapping_fraction);
+    overlapSlidingWindow(gyr_z, overlapping_fraction);
 
-    // let start_index = 0;
-    // let delete_elements = 32;
+    overlapSlidingWindow(lat_inc, overlapping_fraction);
+    overlapSlidingWindow(long_inc, overlapping_fraction);
+    overlapSlidingWindow(alt_inc, overlapping_fraction);
+    overlapSlidingWindow(sp, overlapping_fraction);
+    overlapSlidingWindow(bear, overlapping_fraction);
+    overlapSlidingWindow(ac, overlapping_fraction);
 
-    // if(eventCount == 128){
-      
-    //   acc_x.splice(start_index, delete_elements);
-    //   acc_y.splice(start_index, delete_elements);
-    //   acc_z.splice(start_index, delete_elements);
-
-    //   gyr_x.splice(start_index, delete_elements);
-    //   gyr_y.splice(start_index, delete_elements);
-    //   gyr_z.splice(start_index, delete_elements);
-
-    // }
-    // else{
-    //   start_index = 0;
-    //   delete_elements = 64;
-
-    //   acc_x.splice(start_index, delete_elements);
-    //   acc_y.splice(start_index, delete_elements);
-    //   acc_z.splice(start_index, delete_elements);
-
-    //   gyr_x.splice(start_index, delete_elements);
-    //   gyr_y.splice(start_index, delete_elements);
-    //   gyr_z.splice(start_index, delete_elements);
-
-    // }
-    
   }
 }
