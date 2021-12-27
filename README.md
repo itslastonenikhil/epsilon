@@ -2,6 +2,7 @@
 
 Epsilon is a web-based human activity recognition application. It uses the smartphone sensors for activity recognition. 
 
+Link: [Epsilon](https://itslastonenikhil.github.io/epsilon/)
 
 #### Human Activity Recognition
 
