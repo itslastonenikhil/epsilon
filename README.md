@@ -12,6 +12,11 @@ HAR aims to classify a person's actions from a series of measurements captured b
 
 Epsilon uses machine learning models for prediction of different activities.
 
+#### Screenshot
+<p float="center">
+  <img src="https://github.com/itslastonenikhil/epsilon/blob/main/assets/img/epsilon_.png" width="30%" /> 
+</p>
+
 #### Reference
 
 [A Public Domain Dataset for Real-Life Human Activity Recognition Using Smartphone Sensors](https://www.mdpi.com/1424-8220/20/8/2200/htm)
