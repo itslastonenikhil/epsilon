@@ -198,7 +198,7 @@
   background-color: #aaa;
   overflow: hidden;
   background: url("../../assets/img/epsilon_.png");
-  background-size: contain;
+  background-size: cover;
   background-position: center;
   z-index: -1;
 }
