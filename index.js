@@ -47,11 +47,11 @@ function stopGeolocation(id) {
 
 function startGeolocation() {
 
-  let status = document.querySelector('#status');
-  let mapLink = document.querySelector('#map-link');
+  // let status = document.querySelector('#status');
+  // let mapLink = document.querySelector('#map-link');
 
-  mapLink.href = '';
-  mapLink.textContent = '';
+  // mapLink.href = '';
+  // mapLink.textContent = '';
 
   function success(position) {
     let latitude  = position.coords.latitude;
@@ -62,10 +62,10 @@ function startGeolocation() {
     let speed = position.coords.speed;
 
 
-    status.textContent = '';
+    // status.textContent = '';
     // mapLink.href = `https://www.openstreetmap.org/#map=18/${latitude}/${longitude}`;
-    mapLink.href = `https://www.google.com/maps/@${latitude},${longitude},16z`
-    mapLink.textContent = `Latitude: ${latitude} °, Longitude: ${longitude} °`;
+    // mapLink.href = `https://www.google.com/maps/@${latitude},${longitude},16z`
+    // mapLink.textContent = `Latitude: ${latitude} °, Longitude: ${longitude} °`;
     updateFieldIfNotNull("Latitude", latitude);
     updateFieldIfNotNull("Longitude", longitude);
     updateFieldIfNotNull("Altitude", altitude);
@@ -76,14 +76,14 @@ function startGeolocation() {
   }
 
   function error() {
-    status.textContent = 'Unable to retrieve your location';
+    // status.textContent = 'Unable to retrieve your location';
   }
 
 
   if(!navigator.geolocation) {
-    status.textContent = 'Geolocation is not supported by your browser';
+    // status.textContent = 'Geolocation is not supported by your browser';
   } else {
-    status.textContent = 'Locating…';
+    // status.textContent = 'Locating…';
     id = navigator.geolocation.watchPosition(success, error, options);
   }
 
@@ -110,7 +110,7 @@ function incrementEventCountGPS() {
 
 // Update HTML values =========================================================
 
-function updateFieldIfNotNull(fieldName, value, precision = 10) {
+function updateFieldIfNotNull(fieldName, value, precision = 5) {
   if (value != null)
     document.getElementById(fieldName).innerHTML = value.toFixed(precision);
 }
@@ -182,13 +182,13 @@ function setConfigValues(){
   let highAccGPS = parseFloat(document.getElementById("High_accuracy_gps_input").value);
   
 
-  updateFieldIfNotNull("Record_freq", recordFreq);
-  updateFieldIfNotNull("Predict_freq", predictFreq);
-  updateFieldIfNotNull("HPF_smoothing", hpfSmoothing)
-  updateFieldIfNotNull("LPF_smoothing", lpfSmoothing);
+  updateFieldIfNotNull("Record_freq", recordFreq, 1);
+  updateFieldIfNotNull("Predict_freq", predictFreq, 1);
+  updateFieldIfNotNull("HPF_smoothing", hpfSmoothing, 1)
+  updateFieldIfNotNull("LPF_smoothing", lpfSmoothing, 1);
   // updateFieldIfNotNull("Max_age_gps", maxAgeGPS);
   // updateFieldIfNotNull("Timeout_gps", timeoutGPS);
-  updateFieldIfNotNull("High_accuracy_gps", highAccGPS);
+  updateFieldIfNotNull("High_accuracy_gps", highAccGPS, 1);
 
 }
 

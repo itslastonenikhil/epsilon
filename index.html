@@ -1,125 +1,214 @@
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <!-- <link rel="stylesheet" href="index.css"> -->
-
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>Epsilon</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=News+Cycle:wght@400;700&amp;display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700">
+    <link rel="stylesheet" href="assets/css/Footer-Basic.css">
+    <link rel="stylesheet" href="assets/css/Footer-Clean.css">
+    <link rel="stylesheet" href="assets/css/Footer-Dark.css">
+    <link rel="stylesheet" href="assets/css/Header-Blue.css">
+    <link rel="stylesheet" href="assets/css/Navigation-Clean.css">
+    <link rel="stylesheet" href="assets/css/Navigation-with-Button.css">
+    <link rel="stylesheet" href="assets/css/Navigation-with-Search.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 
 <body>
-    <h2>Human Activity Recognition</h2>
-    
-
-    <div id="main">
-        <a id="start_epsilon" href="#" role="button">Start</a>
-        <p >#Datapoints(Acc & Gyro): <span id="num-observed-events">0</span></p>
-        <p >#Datapoints(GPS): <span id="num-observed-events-gps">0</span></p>
-        <p>Data Interval: <span id="Accelerometer_i">0</span><span> ms</span></p>
-        
-
-
-        <h4>Congfiguration</h4>
-       
-
-        <form action="index.html" id="config">
-            <ul>
-                <li>Record after: <input type="number" id="Record_freq_input" value="2"><span>events</span></li>
-                <li>Predict after: <input type="number" id="Predict_freq_input" value="64"><span>events</span></li>
-                <li>High-Pass(&alpha;): <input type="number" id="HPF_smoothing_input"  value="2"></li>
-                <li>Low-Pass(&alpha;): <input type="number" id="LPF_smoothing_input" value="8"></li>
-                <!-- <li>Max-Age(GPS): <input type="number" id="Max_age_gps_input" value="0"></li>
-                <li>Timeout(GPS): <input type="number" id="Timeout_gps_input" value="3000"></li> -->
-
-                <label for="High_accuracy_gps_input">High Accuracy(GPS):</label>
-                <select id="High_accuracy_gps_input">
-                    <option value="1">True</option>
-                    <option value="0" selected>False</option>
-                </select>
-            </ul>
-            <input type="button" onclick="setConfigValues()" value="Submit">
-        </form>
-
-        <table style="width: 1%;" border="1" cellpadding="2">
-            <tbody>
-                <tr>
-                    <!-- <td>Max-Age </td>
-                    <td>Timeout</td> -->
-                    <td>High Acc.</td>
-                    
-                </tr>
-                <tr>
-                    <!-- <td><span id="Max_age_gps">0</span></td>
-                    <td><span id="Timeout_gps">3000</span></td> -->
-                    <td><span id="High_accuracy_gps">0</span></td>
-                    
-                </tr>
-            </tbody>
-            
-        </table>
-
-        <table style="width: 1%;" border="1" cellpadding="2">
-            <tbody>
-                <tr>
-                    <td>Record</td>
-                    <td>Predict </td>
-                    <td>HPF</td>
-                    <td>LPF</td>
-                    
-                </tr>
-                <tr>
-                    <td><span id="Record_freq">2</span></td>
-                    <td><span id="Predict_freq">64</span></td>
-                    <td><span id="HPF_smoothing">2</span></td>
-                    <td><span id="LPF_smoothing">8</span></td>
-                </tr>
-            </tbody>
-            
-        </table>
-
-        
-        <h4>Accelerometer</h4>
-        <ul>
-            <li>X-axis: <span id="Accelerometer_x">0</span><span> m/s<sup>2</sup></span></li>
-            <li>Y-axis: <span id="Accelerometer_y">0</span><span> m/s<sup>2</sup></span></li>
-            <li>Z-axis: <span id="Accelerometer_z">0</span><span> m/s<sup>2</sup></span></li>
-        </ul>
-
-        <h4>Gyroscope</h4>
-        <ul>
-            <li>X-axis: <span id="Gyroscope_x">0</span><span>&deg;/s</span></li>
-            <li>Y-axis: <span id="Gyroscope_y">0</span><span>&deg;/s</span></li>
-            <li>Z-axis: <span id="Gyroscope_z">0</span><span>&deg;/s</span></li>
-        </ul>
-
-        <h4>Geolocation</h4>
-        <p id = "status"></p>
-        <p>Map: </p><a id = "map-link" target="_blank"></a>
-        <ul>
-            <li>Latitude: <span id="Latitude">0</span><span>&deg;</span></li>
-            <li>Longitude: <span id="Longitude">0</span><span>&deg;</span></li>
-            <li>Altitude: <span id="Altitude">0</span><span>m</span></li>
-            <li>Speed: <span id="Speed">0</span><span>m/s</span></li>
-            <li>Bearing: <span id="Bearing">0</span><span>&deg;</span></li>
-            <li>Accuracy: <span id="Accuracy">0</span><span>m</span></li>
-            
-
-
-        </ul>
-
-        <h4>Activity</h4>
-        <ul>
-            <li>LogisticRegression: <span id="LogisticRegression">None</span></li>
-        </ul>
-       
-
+    <nav class="navbar navbar-light navbar-expand-lg navigation-clean">
+        <div class="container"><a class="navbar-brand" href="#">Epsilon</a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-2"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navcol-2">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link active" href="about.html">About</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container" id="main">
+        <div class="modal fade" role="dialog" tabindex="-1" id="modal-1">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Congfiguration</h4><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="index.html" id="config">
+                            <div class="row">
+                                <div class="col"><label class="col-form-label">Record After</label></div>
+                                <div class="col"><span id="Record_freq">0</span><span>&nbsp;Datapoints</span></div>
+                                <div class="col"><input class="form-control" type="number" id="Record_freq_input" value="2"></div>
+                            </div>
+                            <div class="row">
+                                <div class="col"><label class="col-form-label">Predict After</label></div>
+                                <div class="col"><span id="Predict_freq">0</span><span>&nbsp;Datapoints</span></div>
+                                <div class="col"><input class="form-control" type="number" id="Predict_freq_input" value="64"></div>
+                            </div>
+                            <div class="row">
+                                <div class="col"><label class="col-form-label">High-Pass(1/<strong>α)</strong></label></div>
+                                <div class="col"><span id="HPF_smoothing">0</span></div>
+                                <div class="col"><input class="form-control" type="number" id="HPF_smoothing_input"  value="2"></div>
+                            </div>
+                            <div class="row">
+                                <div class="col"><label class="col-form-label">Low-Pass(1/<strong>α)</strong></label></div>
+                                <div class="col"><span id="LPF_smoothing">0</span></div>
+                                <div class="col"><input class="form-control" type="number" id="LPF_smoothing_input" value="8"></div>
+                            </div>
+                            <div class="row">
+                                <div class="col"><label class="col-form-label" for="High_accuracy_gps_input">High Accuracy(GPS)</label></div>
+                                <div class="col"><span id="High_accuracy_gps">0</span></div>
+                                <div class="col"><select class="form-select" id="High_accuracy_gps_input">
+                                        <option value="1">True</option>
+                                        <option value="0" selected>False</option>
+                                    </select></div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-light" type="button" data-bs-dismiss="modal">Close</button>
+                        <button class="btn btn-primary" type="submit" onclick="setConfigValues()" value="Submit">Submit</button></div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="table-responsive">
+                    <table class="table table-sm">
+                        <thead>
+                            <tr>
+                                <th>Data</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>#Datapoints (Acc. &amp; Gyro.)</td>
+                                <td>&nbsp;<span id="num-observed-events">0</span>&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td>#Datapoints (GPS)</td>
+                                <td>&nbsp;<span id="num-observed-events-gps">0</span>&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td>Data Interval (Acc. &amp; Gyro.)</td>
+                                <td>&nbsp;<span id="Accelerometer_i" >0</span>&nbsp;ms</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="row" style="margin-top: 4px;margin-bottom: 4px;">
+            <div class="col"><button id="start_epsilon" class="btn btn-primary" type="button" style="background: rgb(218,165,32);border-color: rgb(218,165,32);">Start</button></div>
+            <div class="col text-end"><button class="btn btn-primary" type="button" data-bs-target="#modal-1" data-bs-toggle="modal" style="background: rgb(218,165,32);border-color: rgb(218,165,32);">Configure</button></div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="table-responsive">
+                    <table class="table table-sm">
+                        <thead>
+                            <tr>
+                                <th>Axis</th>
+                                <th>Acc.(m/s<sup>2</sup>)</th>
+                                <th>Gyro.(rad/s)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>x</td>
+                                <td><span id="Accelerometer_x">0</span>&nbsp;</td>
+                                <td><span id="Gyroscope_x">0</span>&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td>y</td>
+                                <td id="Accelerometer_y">0</td>
+                                <td id="Gyroscope_y">0</td>
+                            </tr>
+                            <tr>
+                                <td>z</td>
+                                <td id="Accelerometer_z">0</td>
+                                <td id="Gyroscope_z">0</td>
+                            </tr>
+                            <tr></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="table-responsive">
+                    <table class="table table-sm">
+                        <thead>
+                            <tr>
+                                <th>GPS</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Latitude</td>
+                                <td>&nbsp;<span id="Latitude">0</span>&nbsp;degrees</td>
+                            </tr>
+                            <tr>
+                                <td>Longitude</td>
+                                <td>&nbsp;<span id="Longitude">0</span>&nbsp;degrees</td>
+                            </tr>
+                            <tr>
+                                <td>Altitude</td>
+                                <td>&nbsp;<span id="Altitude">0</span>&nbsp;m</td>
+                            </tr>
+                            <tr>
+                                <td>Speed</td>
+                                <td>&nbsp;<span id="Speed">0</span>&nbsp;m/s</td>
+                            </tr>
+                            <tr>
+                                <td>Bearing</td>
+                                <td>&nbsp;<span id="Bearing">0</span>&nbsp;degrees</td>
+                            </tr>
+                            <tr>
+                                <td>Accuracy</td>
+                                <td>&nbsp;<span id="Accuracy">0</span>&nbsp;m</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="table-responsive">
+                    <table class="table table-sm">
+                        <thead>
+                            <tr>
+                                <th>ML Model</th>
+                                <th>Predicted Activity</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Logistic Regression</td>
+                                <td id="LogisticRegression">None</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
     </div>
+    <footer style="text-align: center;margin-top: 12px;">
+        <div class="row">
+            <div class="col">
+                <p>Made by Nikhil Maurya</p>
+            </div>
+        </div>
+    </footer>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
     <script defer src='https://unpkg.com/simple-statistics@7.7.0/dist/simple-statistics.min.js'></script>
     <script defer src="index.js"></script>
-
 </body>
 
 </html>
